@@ -12,10 +12,19 @@ public class WeatherServicesImpl implements WeatherService {
     }
 
     public String getAllInformationFromApi(String cityName, RestTemplate restTemplate){
-        String url = "http://api.openweathermap.org/data/2.5/weather?q="+ cityName + "&appid=" + "YOUR_API_KEY_HERE";
+        String url = "http://api.openweathermap.org/data/2.5/weather?q="+ cityName + "&appid=" + "300d4d98f0a405bd551544ed99b60059";
         AllKeysFromJson jsonResponse = restTemplate.getForObject(url, AllKeysFromJson.class);
         return jsonResponse.toString();
     }
+
+    @Override
+    public double getOnlyTheTemperature(String cityName, RestTemplate restTemplate) {
+        String url = "http://api.openweathermap.org/data/2.5/weather?q="+ cityName + "&appid=" + "300d4d98f0a405bd551544ed99b60059";
+        AllKeysFromJson jsonResponse = restTemplate.getForObject(url, AllKeysFromJson.class);
+        return jsonResponse.getMain().getTemp();
+    }
+
+
 
 
 }
